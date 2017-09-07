@@ -8,7 +8,7 @@ THINGS TO DO BEFORE PENNAPPS:
 
 THINGS TO DO DURING PENNAPPS:
 
--Query to Thingiverse for most common object (GET requests from REST API) (Probably stick to Tools category for best results)
+-Query to Thingiverse for most common object (GET requests from REST API) (Probably stick to Tools category for best results) (Two good ones for testing bc only one file: wrench / dolphin)
 
     https://www.thingiverse.com/developers/rest-api-reference:
     
