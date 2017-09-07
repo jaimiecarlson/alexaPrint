@@ -28,11 +28,14 @@ THINGS TO DO DURING PENNAPPS:
       
               (array) - A list of things matching the search 
 
+-Perhaps integrate with OpenSCAD if it is not on Thingiverse? (Only if extra time)
+
 -Unzip Thingiverse files and pick out 1 STL (just 1 for a demo) (Could do in system() if the backend was in Python)
 
 -Transform STL to Makerbot (Could do in system() if the backend was in Python)
 
 -Attach Makerbot file to an email and send with Alexa (https://stackoverflow.com/questions/4672903/sending-mails-with-attachment-via-nodejs)
 
+Examples: wrench / 
 
 
