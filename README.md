@@ -7,6 +7,7 @@ THINGS TO DO BEFORE PENNAPPS:
 -Set up NodeJS on this computer (Windows side bc might be a lot of space required)
 
 THINGS TO DO DURING PENNAPPS:
+
 -Query to Thingiverse for most common object (GET requests from REST API)
 
     https://www.thingiverse.com/developers/rest-api-reference:
