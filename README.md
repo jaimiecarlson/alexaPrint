@@ -2,7 +2,7 @@
 PennApps Fall 2017 
 
 THINGS TO DO BEFORE PENNAPPS:
--Figure out how to upload a zip file to Alexa (DONE - note there cannot be a folder inside the folder - the objects must be directly inside a zip file)
+-Figure out how to upload a zip file to Alexa
 
 -Set up NodeJS on this computer (Windows side bc might be a lot of space required)
 
