@@ -1,0 +1,53 @@
+Notes from the Python Flask Tutorial:
+
+requests library install - allows you to do get and post requests in python
+
+Beautiful Soup library - sends HTML through it, parses it
+install it through pip
+
+bs4 in python
+
+soup = BeautifulSoup(html_string)
+soup.<tag> returns the first element with that tag
+t.text => all text in the subtree rooted at t
+can search the tree as well, find all of the emails in html, can provide regular expression of an email
+can do data scraping
+
+what about running a server in flask?
+
+sample in Downloads/pennapps folder
+
+Jinja features: most of page is HTML but it can respond programatically to input as well
+python code within {% curly braces %}
+creates a dynamic website for you
+
+{%for item in things%}
+<li> {%item %} </li>
+{%endfor%}
+
+from flask import requeset, redirect, url_for
+
+can get arguments from get and post requests
+
+POST data: request.form['key']
+
+app.route
+
+logging
+
+my_flask.log
+
+app.logger.debug()
+
+Django - more stuff than Flask
+Pyramid - more configurable
+
+Dropbox - nicely annotated REST API
+many web APIs transmit data in JSON
+always wrap JSON in a top level dictionary because top level arrays can be hacked? apparently
+
+json.dump() writes json to a file
+json.load() loads JSON fomr a file
+
+ssl
+

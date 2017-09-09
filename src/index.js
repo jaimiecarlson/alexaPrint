@@ -21,8 +21,9 @@ const handlers = {
     'RequestAPrint': function(){
         var thing = this.event.request.intent.slots.THING.value;
         this.attributes['thing'] = thing;
-        thingiverse.findThing(thing).then((object) => {
-            this.emit(':tell', this.t('PRINT_MESSAGE') + thing);
+        thingiverse.findThing(thing).then((status) => {
+            console.log("do we ever get there");
+           // this.emit(':tell', this.t('PRINT_MESSAGE') + thing);
         });
     },
     'RequestATime' :  function(){

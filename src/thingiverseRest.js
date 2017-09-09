@@ -15,15 +15,23 @@ var accessToken = 'c9eab74d35abff24c6608a664c17e6ae';
 exports.findThing = (name) => {
 	return new Promise((resolve, reject) => {
 		searchThing(name).then((object) => {
+			console.log("successful search");
 			console.log(object);
-			mailThing(object);
+			mailThing(object).then((success) => {
+				console.log("mailing worked");
+				resolve(success);
+			}).catch((reason) => {
+				console.log("mail did not work");
+				reject(reason);
+			});
 		}).catch((reason) => {
+			console.log("did not work");
 			reject(reason);
 		});
 	});
 };
 
-function searchThing(name) {
+const searchThing = (name) => {
 	console.log('started');
     return new Promise((resolve, reject) => {
         const url = 'http://api.thingiverse.com/search/' + name + '?access_token=' + accessToken;
@@ -64,13 +72,15 @@ function searchThing(name) {
 			}
 	    });
     });
-}
+};
 
-function mailThing(name) {
+const mailThing = (name) => {
 	var url = name.url;
+	console.log("url in mail thing is" + url);
 	return new Promise((resolve, reject) => {
 		request.get(url, function(error, response, body) {
 			if (error) {
+				console.log("there was an error");
 				reject(error);
 			} else {
 				var transporter = mailer.createTransport({
@@ -89,14 +99,23 @@ function mailThing(name) {
 					body: 'Attached is your file.',
 					attachments: [{'filename': 'file.stl', 'content': body}]
 				};
+				console.log("right before sending the mail");
+				console.log(mailOptions);
+				console.log(transporter);
 				transporter.sendMail(mailOptions, (error, info) => {
+					console.log('about to send the mail');
+					console.log(info);
 					if (error){
+						console.log("there was a mail error");
 						reject(error);
+						return;
 					} else {
+						console.log("successful mail");
 						resolve("Success");
+						return;
 					}
 				});
 			}
 		});
 	}); 
-}
+};
