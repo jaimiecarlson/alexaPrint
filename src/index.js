@@ -1,4 +1,5 @@
 'use strict';
+
 const Alexa = require('alexa-sdk');
 const Promise = require('es6-promise').Promise;
 const thingiverse = require('./thingiverseRest');
@@ -21,7 +22,7 @@ const handlers = {
         var thing = this.event.request.intent.slots.THING.value;
         this.attributes['thing'] = thing;
         thingiverse.findThing(thing).then((object) => {
-            this.emit(':tell', this.t('PRINT_MESSAGE') + JSON.parse(object.body));
+            this.emit(':tell', this.t('PRINT_MESSAGE') + thing);
         });
     },
     'RequestATime' :  function(){
