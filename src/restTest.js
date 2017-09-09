@@ -123,20 +123,8 @@ request({
 					var data = s[i].split('\"');
 					console.log(data[1]);
 					//Print the first one
-					console.log("https://www.thingiverse.com/download:" + data[1]);
-					request({
-						url:"https://www.thingiverse.com/download:" + data[1],
-						method:'GET', 
-						function(err, res, body){
-							console.log("got here");
-							if (err){
-								console.log(err);
-							} else {
-								console.log(res);
-								console.log(body);
-							}
-						}
-					});
+					var downloadURL = "https://www.thingiverse.com/download:" + data[1];
+					console.log(downloadURL);
 
 					break;
 				}
@@ -152,4 +140,13 @@ request({
 	} else {
 		console.log("Sorry, I didn't find anything like that");
 	}
+});
+
+var reqt = request.get("https://www.thingiverse.com/download:279669", function(error, response, body) {
+	if (error) console.log(error);
+	if (body) console.log(body);
+	fs.writeFile('file.stl', body, (err) =>{
+		if (err) console.log(err);
+		else console.log("successfully wrote stl file");
+	})
 });
