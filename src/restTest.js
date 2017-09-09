@@ -4,6 +4,7 @@ var express = require('express');
 const http = require('http');
 const path = require('path');
 const htmlparser = require('htmlparser');
+const mailer = require('nodemailer');
 
 var clientID = 'e0fddff6b540e2b131a4';
 var clientSecret = '6b79f52c559c6ca614b51f7a4a06ff60';
@@ -145,8 +146,57 @@ request({
 var reqt = request.get("https://www.thingiverse.com/download:279669", function(error, response, body) {
 	if (error) console.log(error);
 	if (body) console.log(body);
-	fs.writeFile('file.stl', body, (err) =>{
-		if (err) console.log(err);
-		else console.log("successfully wrote stl file");
-	})
+	var transporter = mailer.createTransport({
+		host: 'smtp.gmail.com',
+		port: 587,
+		secure: false,
+		auth: {
+			user: 'alexatestpennapps@gmail.com',
+			pass: 'thisisapassword' 
+		}
+	});	
+	var mailOptions = {
+		sender: 'alexatestpennapps@gmail.com',
+		to: 'jaimiec40@gmail.com',
+		subject: '3D Printed File from Alexa',
+		body: 'Attached is your file.',
+		attachments: [{'filename': 'file.stl', 'content': body}]
+	};
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error){
+			console.log(error);
+		} else {
+			console.log(info.messageId);
+		}
+
+	});
 });
+
+
+	/*fs.writeFile('file.stl', body, (err) =>{
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Successfully wrote stl file");
+			var mailer = require('nodemailer');
+			mailer.SMTP = {
+				host: 'smtp.gmail.com',
+				port: 587,
+				use_authentication: true,
+				user: 'jaimiec@seas.upenn.edu',
+				pass: '=D15NDyiOKzannah3' 
+			};
+
+			fs.readFile('file.stl', function(err, data){
+				mailer.send_mail({
+					sender: 'jaimiec@seas.upenn.edu',
+					to: 'jaimiec@seas.upenn.edu',
+					subject: '3D Printed File from Alexa',
+					body: 'Attached is your file.',
+					attachments: [{'filename': 'file.stl', 'content': data}]
+
+				});
+			})
+		}
+	})
+});*/
